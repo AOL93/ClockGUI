@@ -4,12 +4,12 @@
 <?import java.lang.String?>
 <VBox fx:id="main" fx:controller="sample.Controller"
       xmlns:fx="http://javafx.com/fxml" alignment="center" stylesheets="@style.css">
-
+    <TextField fx:id="alarmName" promptText="Alarm name" focusTraversable="false"/>
     <HBox alignment="CENTER">
-        <Spinner fx:id="hourSpinner" initialValue="0" amountToStepBy="1" >
+        <Spinner fx:id="hourSpinner" initialValue="0" amountToStepBy="1">
             <editable>true</editable>
             <valueFactory>
-                <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="23" wrapAround="true" />
+                <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="23" wrapAround="true"  />
             </valueFactory>
             <styleClass>
                 <String fx:value="split-arrows-vertical" />

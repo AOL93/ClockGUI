@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Alarm Clock - GUI");
-        primaryStage.setScene(new Scene(root, 720, 480));
+        primaryStage.setScene(new Scene(root, 720, 550));
         primaryStage.show();
     }
 
@@ -21,7 +21,5 @@ public class Main extends Application {
         launch(args);
     }
 }
-
-//TODO Style Spinners (center text in Spinner somehow :O).
-//TODO Time in Spinners always 2 digits.
 //TODO Add forgotten components. (Alarm name and repeat).
+//TODO Add style for Spinners

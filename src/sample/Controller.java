@@ -1,16 +1,17 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Spinner;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.util.StringConverter;
+
+import java.util.function.UnaryOperator;
 
 public class Controller {
 
+    @FXML
+    public TextField alarmName;
     @FXML
     public Spinner hourSpinner;
     @FXML
@@ -39,13 +40,43 @@ public class Controller {
 
     @FXML
     public void initialize() {
-         volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-             @Override
-             public void changed(ObservableValue<? extends Number> observable,
-                                 Number oldValue, Number newValue) {
-                 volumeValue.setText("" + newValue.intValue());
-             }
-         });
+         volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> volumeValue.setText("" + newValue.intValue()));
+
+        StringConverter<String> formatter;
+        formatter = new StringConverter<String>() {
+            @Override
+            public String fromString(String string) {
+                if(string.length()==2){
+                    return string;
+                } else if(string.length()<2) {
+                    return "0" + string;
+                }
+                return "00";
+            }
+
+            @Override
+            public String toString(String object) {
+                if(object == null) return "00";
+                else return object;
+            }
+        };
+
+        UnaryOperator<TextFormatter.Change> filter;
+        filter = change -> {
+            String text = change.getText();
+            for (int i = 0; i < text.length(); i++)
+                if (!Character.isDigit(text.charAt(i)))
+                    return null;
+            return change;
+        };
+
+         hourSpinner.getEditor().setAlignment(Pos.CENTER);
+         hourSpinner.getEditor().setTextFormatter(new TextFormatter<>(formatter, "00", filter));
+         minSpinner.getEditor().setAlignment(Pos.CENTER);
+         minSpinner.getEditor().setTextFormatter(new TextFormatter<>(formatter, "00", filter));
+         secSpinner.getEditor().setAlignment(Pos.CENTER);
+         secSpinner.getEditor().setTextFormatter(new TextFormatter<>(formatter, "00", filter));
+
     }
 
     public void quit() {
@@ -53,9 +84,13 @@ public class Controller {
     }
 
     public void save() {
+        String alarmName;
         String timeAlarm;
-        String repeat;
+        String days;
         String result;
+
+        //TODO Add Checkbox repeat.
+        boolean repreat;
 
         int volume;
 
@@ -63,23 +98,26 @@ public class Controller {
         timeAlarm = hourSpinner.getValue() + ":" + minSpinner.getValue() + ":" + secSpinner.getValue();
 
         //Repeat alarm
-        repeat = "";
-        repeat += cbMon.isSelected() ? "Monday ":"";
-        repeat += cbTeu.isSelected() ? "Tuesday ":"";
-        repeat += cbWed.isSelected() ? "Wednesday ":"";
-        repeat += cbThu.isSelected() ? "Thursday ":"";
-        repeat += cbFri.isSelected() ? "Friday ":"";
-        repeat += cbSat.isSelected() ? "Saturday ":"";
-        repeat += cbSun.isSelected() ? "Sunday ":"";
+        days = "";
+        days += cbMon.isSelected() ? "Monday ":"";
+        days += cbTeu.isSelected() ? "Tuesday ":"";
+        days += cbWed.isSelected() ? "Wednesday ":"";
+        days += cbThu.isSelected() ? "Thursday ":"";
+        days += cbFri.isSelected() ? "Friday ":"";
+        days += cbSat.isSelected() ? "Saturday ":"";
+        days += cbSun.isSelected() ? "Sunday ":"";
 
-        if(repeat.equals("")) {
-            repeat = "none";
+        if(days.equals("")) {
+            days = "none";
         }
+
+        alarmName = this.alarmName.getText();
 
         volume = (int) Math.floor( volumeSlider.getValue() );
 
-        result = "Time alarm: " + timeAlarm + "\n" +
-                "Repeat alarm on: " + repeat + "\n" +
+        result = "Alarm Name: " + alarmName + "\n" +
+                "Time alarm: " + timeAlarm + "\n" +
+                "Repeat alarm on: " + days + "\n" +
                 "Volume: " + volume;
 
         System.out.println(result);
