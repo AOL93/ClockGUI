@@ -1,0 +1,48 @@
+* {
+    -fx-padding: 10px;
+}
+
+#main {
+    -fx-background-color: #2F3336;
+}
+
+Label {
+    -fx-text-fill: #EFEFEF;
+    -fx-font-size: 25px;
+    -fx-underline: true;
+}
+
+CheckBox {
+    -fx-text-fill: #EFEFEF;
+}
+
+CheckBox:hover {
+    -fx-effect: dropshadow(three-pass-box, #EFEFEF, 10, 0, 0, 0);
+}
+
+Spinner {
+    -fx-background-color: transparent;
+}
+
+#saveBtn {
+    -fx-background-color: linear-gradient(#7EBCEA,#2F4B8F);
+    -fx-background-radius: 10 0 0 10;
+    -fx-text-fill: white;
+    -fx-padding: 15 30 15 30;
+    -fx-font-size: 15px;
+    -fx-min-width: 100px;
+    -fx-border-color: #EFEFEF;
+    -fx-border-width: 0 1px 0 0;
+    -fx-cursor: hand;
+}
+#cancelBtn {
+    -fx-background-color: linear-gradient(#7EBCEA,#2F4B8F);
+    -fx-background-radius: 0 10 10 0;
+    -fx-text-fill: white;
+    -fx-padding: 15 30 15 30;
+    -fx-font-size: 15px;
+    -fx-min-width: 100px;
+    -fx-border-color: #EFEFEF;
+    -fx-border-width: 0 0 0 1px;
+    -fx-cursor: hand;
+}

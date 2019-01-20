@@ -1,0 +1,62 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import java.lang.String?>
+<VBox fx:id="main" fx:controller="sample.Controller"
+      xmlns:fx="http://javafx.com/fxml" alignment="center" stylesheets="@style.css">
+
+    <HBox alignment="CENTER">
+        <Spinner fx:id="hourSpinner" initialValue="0" amountToStepBy="1" >
+            <editable>true</editable>
+            <valueFactory>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="23" wrapAround="true" />
+            </valueFactory>
+            <styleClass>
+                <String fx:value="split-arrows-vertical" />
+            </styleClass>
+        </Spinner>
+
+        <Spinner fx:id="minSpinner" initialValue="0" amountToStepBy="1">
+            <editable>true</editable>
+            <valueFactory>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="59" wrapAround="true" />
+            </valueFactory>
+            <styleClass>
+                <String fx:value="split-arrows-vertical" />
+            </styleClass>
+        </Spinner>
+
+        <Spinner fx:id="secSpinner" initialValue="0" amountToStepBy="1">
+            <editable>true</editable>
+            <valueFactory>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="59" wrapAround="true" />
+            </valueFactory>
+            <styleClass>
+                <String fx:value="split-arrows-vertical" />
+            </styleClass>
+        </Spinner>
+    </HBox>
+
+    <Label>Week Days:</Label>
+
+    <HBox alignment="CENTER">
+        <CheckBox fx:id="cbMon" text="Mon"/>
+        <CheckBox fx:id="cbTeu" text="Tue"/>
+        <CheckBox fx:id="cbWed" text="Wed"/>
+        <CheckBox fx:id="cbThu" text="Thu"/>
+        <CheckBox fx:id="cbFri" text="Fri"/>
+        <CheckBox fx:id="cbSat" text="Sat"/>
+        <CheckBox fx:id="cbSun" text="Sun"/>
+    </HBox>
+
+    <HBox alignment="CENTER">
+        <Label>Volume:</Label> <Label fx:id="volumeValue">0</Label>
+    </HBox>
+
+    <Slider fx:id="volumeSlider" min="0" max="100" />
+
+    <HBox alignment="CENTER" >
+        <Button fx:id="saveBtn" onAction="#save">Save</Button>
+        <Button fx:id="cancelBtn" onAction="#quit">Cancel</Button>
+    </HBox>
+</VBox>
