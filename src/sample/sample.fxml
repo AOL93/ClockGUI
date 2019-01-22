@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import java.lang.String?>
 <VBox fx:id="main" fx:controller="sample.Controller"
-      xmlns:fx="http://javafx.com/fxml" alignment="center" stylesheets="@style.css">
+      xmlns:fx="http://javafx.com/fxml" alignment="CENTER" stylesheets="@style.css">
     <TextField fx:id="alarmName" promptText="Alarm name" focusTraversable="false"/>
     <HBox alignment="CENTER">
         <Spinner fx:id="hourSpinner" initialValue="0" amountToStepBy="1">
@@ -37,9 +37,12 @@
         </Spinner>
     </HBox>
 
-    <Label>Week Days:</Label>
-
     <HBox alignment="CENTER">
+        <Label>Week Days:</Label>
+        <CheckBox fx:id="cbRepeat" text="Repeat"/>
+    </HBox>
+
+    <HBox fx:id="weekdayCB" alignment="CENTER">
         <CheckBox fx:id="cbMon" text="Mon"/>
         <CheckBox fx:id="cbTeu" text="Tue"/>
         <CheckBox fx:id="cbWed" text="Wed"/>

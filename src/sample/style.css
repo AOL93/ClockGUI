@@ -18,11 +18,25 @@ CheckBox {
 
 CheckBox:hover {
     -fx-effect: dropshadow(three-pass-box, #EFEFEF, 10, 0, 0, 0);
+    -fx-cursor: hand ;
 }
 
 Spinner {
     -fx-background-color: transparent;
 }
+
+#alarmName {
+    -fx-alignment: center;
+}
+
+Spinner > .text-field {
+    -fx-alignment: center;
+    -fx-font-size: 50px;
+    -fx-background-color: transparent;
+    -fx-text-fill: #EFEFEF;
+}
+
+
 
 #saveBtn {
     -fx-background-color: linear-gradient(#7EBCEA,#2F4B8F);
